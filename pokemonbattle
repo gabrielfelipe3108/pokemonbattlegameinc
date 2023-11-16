@@ -1,0 +1,82 @@
+#include "raylib.h"
+
+// Restante das estruturas e funções mantidas...
+
+// Função para inicializar a Pokédex a partir de um arquivo CSV
+void inicializarPokedex(Pokemon **pokedex, int *tamanhoPokedex) {
+    // Implemente a leitura do arquivo CSV aqui e aloque dinamicamente a pokedex
+    // Atualize o tamanhoPokedex
+}
+
+// Função para liberar a memória alocada para a Pokédex
+void liberarPokedex(Pokemon *pokedex) {
+    // Implemente a liberação de memória aqui
+}
+
+// Função para adicionar um novo Pokémon à Pokédex
+void cadastrarPokemon(Pokemon **pokedex, int *tamanhoPokedex) {
+    // Implemente a lógica para adicionar um novo Pokémon à Pokédex
+}
+
+// Função para listar os Pokémon da Pokédex
+void listarPokemon(Pokemon *pokedex, int tamanhoPokedex) {
+    // Implemente a lógica para listar os Pokémon da Pokédex
+}
+
+// Função principal
+int main() {
+    // Inicializar a janela gráfica usando raylib
+    InitWindow(800, 600, "Pokedex");
+
+    Pokemon *pokedex = NULL;
+    int tamanhoPokedex = 0;
+
+    // Inicializar a Pokédex a partir do arquivo CSV
+    inicializarPokedex(&pokedex, &tamanhoPokedex);
+
+    int opcao;
+    do {
+        // Verificar se a janela foi fechada
+        if (WindowShouldClose()) break;
+
+        // Iniciar o desenho
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        // Exibir o menu (pode ser substituído por elementos gráficos)
+        DrawText("Menu:", 10, 10, 20, BLACK);
+        DrawText("1. Cadastrar Pokémon", 10, 40, 20, BLACK);
+        DrawText("2. Listar Pokémon", 10, 70, 20, BLACK);
+        DrawText("3. Sair", 10, 100, 20, BLACK);
+        DrawText("Escolha uma opção: ", 10, 130, 20, BLACK);
+
+        // Executar a opção escolhida (pode ser substituído por interação de botões)
+        opcao = GetCharPressed();
+        switch (opcao) {
+            case '1':
+                cadastrarPokemon(&pokedex, &tamanhoPokedex);
+                break;
+            case '2':
+                listarPokemon(pokedex, tamanhoPokedex);
+                break;
+            case '3':
+                // Sair do programa
+                break;
+            default:
+                // Opção inválida
+                break;
+        }
+
+        // Encerrar o desenho
+        EndDrawing();
+
+    } while (opcao != '3');
+
+    // Fechar a janela
+    CloseWindow();
+
+    // Liberar a memória alocada para a Pokédex
+    liberarPokedex(pokedex);
+
+    return 0;
+}
